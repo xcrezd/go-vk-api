@@ -39,8 +39,8 @@ func (client *VK) CallMethod(method string, params RequestParams) ([]byte, error
 	}
 
 	resp, err := resty.R().
-		SetQueryParams(params).
-		Get(client.url + method)
+		SetFormData(params).
+		Post(client.url + method)
 
 	if err != nil {
 		client.Log("[Error] VK::CallMethod:", err.Error(), "WebResponse:", string(resp.Body()))
